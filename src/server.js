@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express    = require("express")
 const app        = express()
 const http       = require("http")
@@ -23,7 +25,7 @@ io.on("connection", (socket) => {
   })
 
   socket.on("me", (data) => {
-    axios.get('http://localhost:5000/select/transactions')
+    axios.get(process.env.ZORM+process.env.SELECT_TRANSACTION)
       .then((res) => {
         if (res.data) {
           const dataT = res.data
@@ -34,7 +36,7 @@ io.on("connection", (socket) => {
         console.log(err)
       })
   
-    axios.get('http://localhost:5000/select/all')
+    axios.get(process.env.ZORM+process.env.SELECT_ALL)
       .then((res) => {
         if (res.data) {
           const arr  = res.data

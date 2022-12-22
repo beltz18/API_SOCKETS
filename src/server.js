@@ -18,6 +18,7 @@ io.on("connection", (socket) => {
   console.log(`User connected from: ${socket.id}`)
 
   socket.on("new_applicant", (data) => {
+    console.log(data)
     socket.broadcast.emit("applicant", data)
   })
 
@@ -54,7 +55,6 @@ io.on("connection", (socket) => {
               rows.push(obj)
             }
           }
-          console.log("here", rows)
           socket.emit("data_workers", rows)
         }
       })

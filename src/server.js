@@ -21,6 +21,7 @@ io.on("connection", async (socket) => {
 
   socket.on("new_applicant", (data) => {
     console.log(data)
+    axios.post(process.env.API+process.env.REG_APPLICANT, { data })
     socket.broadcast.emit("applicant", data)
   })
 
